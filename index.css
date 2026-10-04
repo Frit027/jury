@@ -250,7 +250,7 @@ p, h1, dl, dd, ol {
     overflow: hidden;
     border-radius: inherit;
 }
-.photo__window::before {
+.photo_participant .photo__window::before {
     content: "";
     position: absolute;
     inset: 0;

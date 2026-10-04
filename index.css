@@ -74,10 +74,11 @@ p, h1, dl, dd, ol {
 }
 
 .page_jury, .page_result {
+    position: fixed;
     --unit: min(calc(100vw / 5120), calc(100svh / 1792));
     --line: calc(3 * var(--unit));
     width: calc(5120 * var(--unit));
-    height: calc(1792 * var(--unit));
+    height: 100%;
     padding: calc(110 * var(--unit)) calc(120 * var(--unit));
     align-items: center;
     justify-content: center;
@@ -96,7 +97,6 @@ p, h1, dl, dd, ol {
     align-items: center;
     justify-content: center;
     gap: calc(120 * var(--unit));
-    width: 100%;
 }
 
 /* Блок info: общая карточка участника */
@@ -440,10 +440,8 @@ p, h1, dl, dd, ol {
 .brand__image {
     position: absolute;
     height: 100%;
-    width: 307.03%;
     max-width: none;
     left: 1.1%;
-    top: 0;
 }
 
 /* Блок jury */

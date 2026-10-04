@@ -1,0 +1,800 @@
+/* Общие настройки и локальные шрифты */
+@font-face {
+    font-family: "MADE Evolve Sans";
+    src: url("assets/fonts/made-evolve-sans-medium.otf") format("opentype");
+    font-weight: 500;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "MADE Evolve Sans";
+    src: url("assets/fonts/made-evolve-sans-bold.otf") format("opentype");
+    font-weight: 700;
+    font-display: swap;
+}
+
+:root {
+    --background: #1d2046;
+    --text: #fff;
+    --label: #bdb6ec;
+    --holo: linear-gradient(135deg, #7cf2dc 0%, #9db3ff 36%, #e29cf2 68%, #ffb896 100%);
+    --glass: rgb(255 255 255 / 8%);
+    --stage-glass: rgb(18 20 51 / 62%);
+    --divider: rgb(255 255 255 / 12%);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100svh;
+    margin: 0;
+    background: var(--background);
+    color: var(--text);
+    font-family: "MADE Evolve Sans", Arial, sans-serif;
+    font-weight: 500;
+}
+
+p, h1, dl, dd, ol {
+    margin: 0;
+}
+
+/* Блок page. Единица масштаба — как в примере, с учётом высоты экрана. */
+.page {
+    --unit: min(calc(100vw / 1194), calc(100svh / 834));
+    --line: calc(1.5 * var(--unit));
+    --glow: 0 calc(10 * var(--unit)) calc(36 * var(--unit)) rgb(196 181 255 / 55%),
+        0 0 calc(16 * var(--unit)) rgb(124 242 220 / 25%);
+    display: flex;
+    flex-direction: column;
+    width: calc(1194 * var(--unit));
+    height: calc(834 * var(--unit));
+    padding: calc(32 * var(--unit)) calc(48 * var(--unit)) calc(24 * var(--unit));
+    position: relative;
+}
+
+.page_profile {
+    gap: calc(16 * var(--unit));
+}
+.page_mark {
+    align-items: center;
+    justify-content: space-between;
+}
+
+.page__content {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    gap: calc(56 * var(--unit));
+    min-height: 0;
+}
+
+.page_jury, .page_result {
+    --unit: min(calc(100vw / 5120), calc(100svh / 1792));
+    --line: calc(3 * var(--unit));
+    width: calc(5120 * var(--unit));
+    height: calc(1792 * var(--unit));
+    padding: calc(110 * var(--unit)) calc(120 * var(--unit));
+    align-items: center;
+    justify-content: center;
+    background: var(--background) url("assets/images/stage-background.png") center / cover no-repeat;
+}
+
+.page_jury {
+    gap: calc(130 * var(--unit));
+}
+.page_result {
+    flex-direction: row;
+    gap: calc(90 * var(--unit));
+}
+.page__header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: calc(120 * var(--unit));
+    width: 100%;
+}
+
+/* Блок info: общая карточка участника */
+.info__fields {
+    display: contents;
+}
+
+.info {
+    display: flex;
+    position: relative;
+    border: var(--line) solid transparent;
+    border-radius: calc(32 * var(--unit));
+    padding: calc(32 * var(--unit));
+    background: var(--glass);
+    backdrop-filter: blur(calc(16 * var(--unit)));
+    box-shadow: 0 calc(20 * var(--unit)) calc(40 * var(--unit)) rgb(10 11 36 / 30%);
+    overflow: hidden;
+}
+
+/* Градиент обводки отдельно от полупрозрачной заливки. */
+.info::before, .jury__card::before, .total::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: var(--line);
+    border-radius: inherit;
+    background: var(--holo);
+    opacity: .7;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.info_profile, .info_result {
+    flex-direction: column;
+}
+.info_profile {
+    flex: 1;
+    height: calc(486 * var(--unit));
+    justify-content: space-between;
+}
+.info_mark {
+    width: 100%;
+    height: calc(252 * var(--unit));
+    gap: calc(32 * var(--unit));
+}
+.info__column {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: space-between;
+    min-width: 0;
+}
+.info__column + .info__column {
+    border-left: calc(1 * var(--unit)) solid var(--divider);
+    padding-left: calc(32 * var(--unit));
+}
+.info__field {
+    display: flex;
+    flex-direction: column;
+    gap: calc(8 * var(--unit));
+    position: relative;
+    min-width: 0;
+}
+.info_profile .info__field + .info__field,
+.info__column .info__field + .info__field {
+    border-top: calc(1 * var(--unit)) solid var(--divider);
+    padding-top: calc(24 * var(--unit));
+}
+.info__label {
+    color: var(--label);
+    font-size: calc(16 * var(--unit));
+    line-height: 1.2;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+}
+.info__value {
+    font-size: calc(36 * var(--unit));
+    font-weight: 700;
+    line-height: 1.15;
+    overflow-wrap: anywhere;
+}
+.info__decor {
+    position: absolute;
+    width: calc(200 * var(--unit));
+    height: calc(134 * var(--unit));
+    top: calc(-56 * var(--unit));
+    right: calc(-60 * var(--unit));
+    transform: rotate(18deg);
+    transform-origin: top left;
+    pointer-events: none;
+}
+.info__confetti {
+    position: absolute;
+    top: calc(-18 * var(--unit));
+    left: calc(-18 * var(--unit));
+    transform: scale(calc(var(--unit) / 1px));
+    transform-origin: top left;
+}
+
+/* Блок profile: вся карточка с фотографией является ссылкой. */
+.profile {
+    display: flex;
+    /*flex: 0 0 calc(560 * var(--unit));*/
+    flex-direction: column;
+    align-items: center;
+    gap: calc(24 * var(--unit));
+    position: relative;
+    padding: calc(20 * var(--unit)) calc(20 * var(--unit)) calc(38 * var(--unit));
+    border-radius: calc(48 * var(--unit));
+    background: linear-gradient(130.92deg, #7cf2dc, #9db3ff 36%, #e29cf2 68%, #ffb896);
+    box-shadow: var(--glow);
+    color: var(--background);
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.profile__photo {
+    width: calc(520 * var(--unit));
+    height: calc(520 * var(--unit));
+    padding: calc(6 * var(--unit));
+}
+.profile__button {
+    font-size: calc(44 * var(--unit));
+    font-weight: 700;
+    line-height: 1;
+    text-transform: uppercase;
+}
+.profile:hover {
+    filter: brightness(1.04);
+}
+.profile:active {
+    filter: brightness(.94);
+}
+.profile:focus-visible {
+    outline: calc(3 * var(--unit)) solid white;
+    outline-offset: calc(8 * var(--unit));
+}
+
+/* Блок photo: исходные изображения и кадрирование из Figma. */
+.photo {
+    flex-shrink: 0;
+    background: var(--holo);
+    box-shadow: var(--glow);
+}
+.photo_participant {
+    width: 100%;
+    height: 100%;
+    padding: calc(10 * var(--unit));
+    border-radius: calc(22 * var(--unit));
+    box-shadow: none;
+}
+.photo__window {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: inherit;
+}
+.photo__image {
+    display: block;
+    position: absolute;
+    /*max-width: none;*/
+}
+.photo__image_participant, .photo__image_total {
+    width: 100%;
+    height: 144.8%;
+    top: -.31%;
+    left: 0;
+}
+.photo_participant .photo__window::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow: inset 0 calc(14 * var(--unit)) calc(36 * var(--unit)) rgb(29 32 70 / 35%);
+}
+
+/* SVG сохраняют собственные размеры, масштабируется их обёртка. */
+.sparkle {
+    position: absolute;
+    pointer-events: none;
+}
+.sparkle__image {
+    display: block;
+    max-width: none;
+    transform: scale(calc(var(--unit) / 1px));
+    transform-origin: top left;
+}
+.sparkle_profile {
+    left: calc(514 * var(--unit));
+    top: calc(-32 * var(--unit));
+}
+.sparkle_score {
+    width: calc(104.4 * var(--unit));
+    height: calc(103.2 * var(--unit));
+    right: calc(-36 * var(--unit));
+    top: calc(-36 * var(--unit));
+    display: none;
+}
+.sparkle_total {
+    width: calc(491 * var(--unit));
+    left: calc(966 * var(--unit));
+    top: calc(-98 * var(--unit));
+}
+
+/* Блок scores: выбор балла без JavaScript. */
+.scores {
+    display: flex;
+    flex-direction: column;
+    gap: calc(24 * var(--unit));
+    border: 0;
+    padding: 0;
+    margin: 0;
+    min-width: 0;
+}
+.scores__row {
+    display: flex;
+    gap: calc(24 * var(--unit));
+}
+.score {
+    display: flex;
+    position: relative;
+    width: calc(168 * var(--unit));
+    height: calc(168 * var(--unit));
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+.score__input {
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    cursor: pointer;
+}
+.score__face {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border: calc(1.5 * var(--unit)) solid rgb(255 255 255 / 24%);
+    border-radius: calc(38.4 * var(--unit));
+    background: var(--glass);
+    box-shadow: 0 calc(24 * var(--unit)) calc(48 * var(--unit)) rgb(10 11 36 / 30%);
+    pointer-events: none;
+}
+.score__value {
+    font-size: calc(96 * var(--unit));
+    line-height: 1;
+    font-weight: 700;
+    letter-spacing: -.02em;
+}
+.score__input:checked + .score__face {
+    border-color: transparent;
+    background: var(--holo);
+    color: var(--background);
+    box-shadow: 0 calc(12 * var(--unit)) calc(43.2 * var(--unit)) rgb(196 181 255 / 55%), 0 0 calc(19.2 * var(--unit)) rgb(124 242 220 / 25%);
+}
+.score__input:checked + .score__face .sparkle {
+    display: block;
+}
+.score__input:focus-visible + .score__face {
+    outline: calc(3 * var(--unit)) solid white;
+    outline-offset: calc(6 * var(--unit));
+}
+.score:hover .score__face {
+    filter: brightness(1.08);
+}
+.score:active .score__face {
+    filter: brightness(.94);
+}
+
+/* Блок footer */
+.footer {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: calc(28 * var(--unit));
+}
+.footer__logo {
+    width: calc(88 * var(--unit));
+    height: calc(28 * var(--unit));
+    object-fit: contain;
+    opacity: .64;
+}
+.footer__participant {
+    color: rgb(255 255 255 / 64%);
+    font-size: calc(16 * var(--unit));
+    line-height: 1.2;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+}
+
+/* Сценические варианты карточки и логотипа */
+.info_jury, .info_result {
+    flex-shrink: 0;
+    padding: calc(56 * var(--unit)) calc(72 * var(--unit));
+    border-radius: calc(64 * var(--unit));
+    background: var(--stage-glass);
+    gap: calc(64 * var(--unit));
+}
+.info_jury .info__field, .info_result .info__field {
+    gap: calc(12 * var(--unit));
+}
+.info_jury .info__label, .info_result .info__label {
+    font-size: calc(44 * var(--unit));
+}
+.info_jury .info__value, .info_result .info__value {
+    font-size: calc(104 * var(--unit));
+    line-height: 1.1;
+    white-space: nowrap;
+}
+.info_jury .info__field + .info__field {
+    border-left: calc(2 * var(--unit)) solid var(--divider);
+    padding-left: calc(64 * var(--unit));
+}
+.info_jury .info__field:nth-child(1) {
+    width: calc(689 * var(--unit));
+}
+.info_jury .info__field:nth-child(2) {
+    width: calc(471 * var(--unit));
+}
+.info_jury .info__field:nth-child(3) {
+    width: calc(388 * var(--unit));
+}
+.info_jury .info__field:nth-child(4) {
+    width: calc(832 * var(--unit));
+}
+.info_result {
+    width: calc(1210 * var(--unit));
+    gap: 0;
+}
+.info_result .info__field + .info__field {
+    margin-top: calc(64 * var(--unit));
+    border-top: calc(2 * var(--unit)) solid var(--divider);
+    padding-top: calc(64 * var(--unit));
+}
+.brand {
+    display: block;
+    flex: 0 0 calc(249 * var(--unit));
+    width: calc(249 * var(--unit));
+    height: calc(243 * var(--unit));
+    position: relative;
+    overflow: hidden;
+}
+.brand__image {
+    position: absolute;
+    height: 100%;
+    width: 307.03%;
+    max-width: none;
+    left: 1.1%;
+    top: 0;
+}
+
+/* Блок jury */
+.jury {
+    display: flex;
+    gap: calc(80 * var(--unit));
+    padding: 0;
+    list-style: none;
+}
+.jury__card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: calc(66 * var(--unit));
+    position: relative;
+    border: var(--line) solid transparent;
+    border-radius: calc(175 * var(--unit));
+    padding: calc(60 * var(--unit)) calc(60 * var(--unit)) calc(78 * var(--unit));
+    background: var(--stage-glass);
+    backdrop-filter: blur(calc(16 * var(--unit)));
+    box-shadow: 0 calc(20 * var(--unit)) calc(40 * var(--unit)) rgb(10 11 36 / 30%);
+}
+.jury .photo {
+    width: calc(560 * var(--unit));
+    height: calc(560 * var(--unit));
+    padding: calc(10 * var(--unit));
+    border-radius: calc(115 * var(--unit));
+}
+.jury .photo__window {
+    border-radius: calc(105 * var(--unit));
+}
+.photo__image_jury-1 {
+    height: 113.21%;
+    width: 181.14%;
+    left: -51.29%;
+    top: 0;
+}
+.photo__image_jury-2 {
+    height: 197.5%;
+    width: 197.5%;
+    left: -48.75%;
+    top: -16.43%;
+}
+.photo__image_jury-3 {
+    height: 114.64%;
+    width: 171.92%;
+    left: -35.96%;
+    top: 0;
+}
+.photo__image_jury-4 {
+    height: 100%;
+    width: 149.97%;
+    left: -10.7%;
+    top: 0;
+}
+.photo__image_jury-5 {
+    height: 100%;
+    width: 211.11%;
+    left: -64.13%;
+    top: 0;
+}
+.jury__score {
+    font-size: calc(240 * var(--unit));
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -.02em;
+}
+
+/* Блок total */
+.total {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    position: relative;
+    gap: calc(140 * var(--unit));
+    padding: calc(80 * var(--unit)) calc(180 * var(--unit)) calc(80 * var(--unit)) calc(80 * var(--unit));
+    border: var(--line) solid transparent;
+    border-radius: calc(280 * var(--unit));
+    background: var(--stage-glass);
+    backdrop-filter: blur(calc(16 * var(--unit)));
+    box-shadow: 0 calc(20 * var(--unit)) calc(40 * var(--unit)) rgb(10 11 36 / 30%);
+}
+.photo_total {
+    width: calc(1200 * var(--unit));
+    height: calc(1200 * var(--unit));
+    padding: calc(17 * var(--unit));
+    border-radius: calc(200 * var(--unit));
+}
+.photo_total .photo__window {
+    border-radius: calc(180 * var(--unit));
+}
+.total__text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: calc(8 * var(--unit));
+    width: calc(871 * var(--unit));
+}
+.total__title {
+    font-size: calc(96 * var(--unit));
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: .12em;
+    color: var(--label);
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+.total__value {
+    font-size: calc(800 * var(--unit));
+    font-weight: 700;
+    line-height: .9;
+    background: var(--holo);
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 calc(10 * var(--unit)) calc(18 * var(--unit)) rgb(196 181 255 / 55%));
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Узкие экраны: читаемый текст и крупные области выбора вместо миниатюры макета. */
+@media (max-width: 600px) {
+    body {
+        align-items: flex-start;
+    }
+    .page {
+        --unit: 1px;
+        width: 100%;
+        height: auto;
+        min-height: 100svh;
+        padding: 24px;
+        gap: 32px;
+    }
+    .page__content {
+        flex-direction: column;
+        gap: 28px;
+    }
+    .profile {
+        flex-basis: auto;
+        width: min(100%, 360px);
+        padding: 14px 14px 24px;
+        gap: 18px;
+        border-radius: 32px;
+    }
+    .profile__photo {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1;
+        padding: 4px;
+    }
+    .profile__button {
+        font-size: 32px;
+    }
+    .photo_participant {
+        padding: 6px;
+    }
+    .sparkle_profile {
+        left: auto;
+        right: -24px;
+        top: -20px;
+        transform: scale(.65);
+        transform-origin: top right;
+    }
+    .info_profile, .info_mark {
+        flex: none;
+        width: 100%;
+        height: auto;
+        padding: 24px;
+    }
+    .info_profile {
+        gap: 20px;
+    }
+    .info__label {
+        font-size: 12px;
+    }
+    .info__value {
+        font-size: 26px;
+    }
+    .info_mark {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .info__column {
+        gap: 20px;
+    }
+    .info__column + .info__column {
+        border-left: 0;
+        border-top: 1px solid var(--divider);
+        padding: 20px 0 0;
+    }
+    .info_profile .info__field + .info__field, .info__column .info__field + .info__field {
+        padding-top: 20px;
+    }
+    .scores {
+        width: 100%;
+        gap: 12px;
+    }
+    .scores__row {
+        gap: 10px;
+    }
+    .score {
+        flex: 1;
+        min-width: 0;
+        width: auto;
+        height: auto;
+        aspect-ratio: 1;
+    }
+    .score__face {
+        border-radius: 16px;
+    }
+    .score__value {
+        font-size: clamp(24px, 7vw, 42px);
+    }
+    .sparkle_score {
+        transform: scale(.45);
+        transform-origin: top right;
+        right: -15px;
+        top: -15px;
+    }
+    .footer {
+        height: 28px;
+        margin-top: auto;
+        gap: 12px;
+    }
+    .footer__participant {
+        font-size: 12px;
+        letter-spacing: .06em;
+    }
+    .page_jury, .page_result {
+        --unit: .33px;
+        --line: 1px;
+        padding: 24px 20px;
+        background-size: auto 100%;
+    }
+    .page__header {
+        gap: 0;
+    }
+    .page__header .brand {
+        display: none;
+    }
+    .info_jury {
+        flex-wrap: wrap;
+        width: 100%;
+        padding: 20px;
+        gap: 20px;
+    }
+    .info_jury .info__field:nth-child(n) {
+        width: calc(50% - 10px);
+        padding: 0;
+        border: 0;
+    }
+    .info_jury .info__label, .info_result .info__label {
+        font-size: 12px;
+    }
+    .info_jury .info__value, .info_result .info__value {
+        font-size: 22px;
+        white-space: normal;
+    }
+    .jury {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 18px;
+        width: 100%;
+    }
+    .jury__card {
+        width: calc(50% - 9px);
+        padding: 12px;
+        gap: 16px;
+        border-radius: 32px;
+    }
+    .jury .photo {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1;
+        padding: 3px;
+        border-radius: 24px;
+    }
+    .jury .photo__window {
+        border-radius: 21px;
+    }
+    .jury__score {
+        font-size: 56px;
+    }
+    .page_result {
+        flex-direction: column;
+        gap: 24px;
+    }
+    .total {
+        flex-direction: column;
+        gap: 24px;
+        width: 100%;
+        padding: 20px;
+        border-radius: 36px;
+    }
+    .photo_total {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1;
+        padding: 5px;
+        border-radius: 28px;
+    }
+    .photo_total .photo__window {
+        border-radius: 23px;
+    }
+    .total__text {
+        width: 100%;
+        gap: 8px;
+    }
+    .total__title {
+        font-size: 24px;
+    }
+    .total__value {
+        font-size: 160px;
+    }
+    .sparkle_total {
+        left: auto;
+        right: -20px;
+        top: -24px;
+        transform: scale(.2);
+        transform-origin: top right;
+    }
+    .page_result > .brand {
+        display: none;
+    }
+    .info_result {
+        width: 100%;
+        padding: 24px;
+        border-radius: 24px;
+    }
+    .info_result .info__field + .info__field {
+        margin-top: 20px;
+        padding-top: 20px;
+    }
+}

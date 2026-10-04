@@ -1,0 +1,21 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="130" height="130" viewBox="0 0 130 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Sparkle" filter="url(#filter0_dd_0_44)">
+<path id="Star" d="M16 65L46.233 64.2813C55.9228 64.0486 64.0323 55.9228 64.2813 46.233L65 16L65.7187 46.233C65.9514 55.9228 74.0773 64.0323 83.767 64.2813L114 65L83.767 65.7187C74.0773 65.9514 65.9678 74.0773 65.7187 83.767L65 114L64.2813 83.767C64.0486 74.0773 55.9228 65.9678 46.233 65.7187L16 65Z" fill="white"/>
+</g>
+<defs>
+<filter id="filter0_dd_0_44" x="0" y="0" width="130" height="130" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset/>
+<feGaussianBlur stdDeviation="3"/>
+<feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.9 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_44"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset/>
+<feGaussianBlur stdDeviation="8"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0.768627 0 0 0 0 0.709804 0 0 0 0 1 0 0 0 0.8 0"/>
+<feBlend mode="normal" in2="effect1_dropShadow_0_44" result="effect2_dropShadow_0_44"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect2_dropShadow_0_44" result="shape"/>
+</filter>
+</defs>
+</svg>

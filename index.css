@@ -1,4 +1,4 @@
-/* Общие настройки и локальные шрифты */
+/* Используемые шрифты */
 @font-face {
     font-family: "MADE Evolve Sans";
     src: url("assets/fonts/made-evolve-sans-medium.otf") format("opentype");
@@ -13,9 +13,9 @@
     font-display: swap;
 }
 
+/* Константы */
 :root {
     --background: #1d2046;
-    --text: #fff;
     --label: #bdb6ec;
     --holo: linear-gradient(135deg, #7cf2dc 0%, #9db3ff 36%, #e29cf2 68%, #ffb896 100%);
     --glass: rgb(255 255 255 / 8%);
@@ -34,7 +34,7 @@ body {
     min-height: 100svh;
     margin: 0;
     background: var(--background);
-    color: var(--text);
+    color: #fff;
     font-family: "MADE Evolve Sans", Arial, sans-serif;
     font-weight: 500;
 }
@@ -43,7 +43,7 @@ p, h1, dl, dd, ol {
     margin: 0;
 }
 
-/* Блок page. Единица масштаба — как в примере, с учётом высоты экрана. */
+/* Блок page. Единица масштаба как в Figma, с учётом высоты экрана */
 .page {
     --unit: min(calc(100vw / 1194), calc(100svh / 834));
     --line: calc(1.5 * var(--unit));
@@ -82,7 +82,7 @@ p, h1, dl, dd, ol {
     padding: calc(110 * var(--unit)) calc(120 * var(--unit));
     align-items: center;
     justify-content: center;
-    background: var(--background) url("assets/images/stage-background.png") center / cover no-repeat;
+    background: var(--background) url("assets/images/background.png") center / cover no-repeat;
 }
 
 .page_jury {
@@ -116,7 +116,7 @@ p, h1, dl, dd, ol {
     overflow: hidden;
 }
 
-/* Градиент обводки отдельно от полупрозрачной заливки. */
+/* Градиент обводки отдельно от полупрозрачной заливки */
 .info::before, .jury__card::before, .total::before {
     content: "";
     position: absolute;
@@ -187,7 +187,6 @@ p, h1, dl, dd, ol {
     right: calc(-60 * var(--unit));
     transform: rotate(18deg);
     transform-origin: top left;
-    pointer-events: none;
 }
 .info__confetti {
     position: absolute;
@@ -197,7 +196,7 @@ p, h1, dl, dd, ol {
     transform-origin: top left;
 }
 
-/* Блок profile: вся карточка с фотографией является ссылкой. */
+/* Блок profile: карточка с фотографией */
 .profile {
     display: flex;
     flex-direction: column;
@@ -231,7 +230,7 @@ p, h1, dl, dd, ol {
     outline-offset: calc(8 * var(--unit));
 }
 
-/* Блок photo: исходные изображения и кадрирование из Figma. */
+/* Блок photo */
 .photo {
     flex-shrink: 0;
     background: var(--holo);
@@ -276,14 +275,12 @@ p, h1, dl, dd, ol {
     width: 100%;
 }
 
-/* SVG сохраняют собственные размеры, масштабируется их обёртка. */
+/* SVG белой звезды */
 .sparkle {
     position: absolute;
     pointer-events: none;
 }
 .sparkle__image {
-    display: block;
-    max-width: none;
     transform: scale(calc(var(--unit) / 1px));
     transform-origin: top left;
 }
@@ -304,7 +301,7 @@ p, h1, dl, dd, ol {
     top: calc(-98 * var(--unit));
 }
 
-/* Блок scores: выбор балла */
+/* Блок scores: выбор оценки */
 .scores {
     display: flex;
     flex-direction: column;
